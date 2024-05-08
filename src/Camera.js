@@ -1,3 +1,5 @@
+const { Vector3 } = require("three");
+
 class Camera{
     constuctor(){
         this.type = 'Camera';
@@ -11,10 +13,34 @@ class Camera{
           this.at.elements[0], this.at.elements[1], this.at.elements[2], 
           this.up.elements[0], this.up.elements[1], this.up.elements[2],
         );
-        this.projectionMatrix = new Matrix4();
+        this.projectionMatrix = new Matrix4().setPerspective(fov, (canvas.width/canvas.height), 0.1, 1000 );
       }
-      MoveForward(){
-        
 
+      MoveForward(){
+        let f = new Vector3();  //Create a new vector f = at - eye.
+        f.set(this.at);
+        f.sub(this.eye);
+        f.normalize();
+        f.mul(speed);
+        // orig code:
+        // this.eye += f;
+        // this.at += f;
+        //ChatGpt debugged code:
+        this.eye.add(f);
+        this.at.add(f);
+      }
+
+      moveBackwards(){
+        let b = new Vector3();
+        b.set(this.eye);
+        b.sub(this.at);
+        b.normalize();
+        b.mul(speed);
+        this.eye.add(b);
+        this.at.add(b);
+      }
+
+      moveLeft(){
+        
       }
 }
