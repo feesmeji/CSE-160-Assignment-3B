@@ -82,6 +82,60 @@ class Cube{
     //Left side of triangle
     drawTriangle3D([0,0,0,   0,1,0,   0,1,1]) //left side of cube triangle 1
     drawTriangle3D([0,0,0,   0,0,1,   0,1,1]) //left side of cube triangle 2
+    
     }
+
+    //ChatGPT helped me debug this function (I was not including UVs which was messing up my map border, chatgpt helped me realize that I needed to add them and I learned how to do with chat gpt's help.)
+    renderfast() {
+        var rgba = this.color;
+    
+        //Pass color of a point to u_FragColor var
+        gl.uniform4f(u_FragColor, rgba[0], rgba[1], rgba[2], rgba[3]);
+    
+        // Pass the color of a point to u_FragColor uniform variable
+        gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);        
+        
+        var allverts = [];
+        var allUVs = [];
+    
+        // Front of cube
+        allverts = allverts.concat([0,0,0,  1,1,0,  1,0,0]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        allverts = allverts.concat([0,0,0,  0,1,0,  1,1,0]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
+    
+        // Back of cube
+        allverts = allverts.concat([0,0,1,  1,1,1,  1,0,1]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        allverts = allverts.concat([0,0,1,  0,1,1,  1,1,1]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
+    
+        // Top of cube
+        allverts = allverts.concat([0,1,0,  0,1,1,  1,1,1]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
+        allverts = allverts.concat([0,1,0,  1,1,1,  1,1,0]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        
+        // Bottom of cube
+        allverts = allverts.concat([0,0,0,  0,0,1,  1,0,1]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
+        allverts = allverts.concat([0,0,0,  1,0,1,  1,0,0]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+    
+        // Right side of cube
+        allverts = allverts.concat([1,1,0,  1,1,1,  1,0,0]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        allverts = allverts.concat([1,0,0,  1,1,1,  1,0,1]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+    
+        // Left side of cube
+        allverts = allverts.concat([0,1,0,  0,1,1,  0,0,0]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,0]);
+        allverts = allverts.concat([0,0,0,  0,1,1,  0,0,1]);
+        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+    
+        drawTriangle3DUV(allverts, allUVs);
+    }
+    
 
 }

@@ -446,13 +446,16 @@ var g_map = [
 ];
 
 function drawMap(){
-  for (x=0; x<8; x++){
-    for (y=0;y<8;y++){
-      if (g_map[x][y]==1){
+  for (x=0; x<32; x++){
+    for (y=0;y<32;y++){
+      if (x<1 || x==31|| y==0|| y==31 ){
         var body = new Cube();
-        body.color = [1.0, 1.0, 1.0, 1.0];
-        body.matrix.translate(x-4, -0.75, y-4);
-        body.render();
+        body.textureNum = 1;
+//        body.color = [0.8, 1.0, 1.0, 1.0];
+        body.matrix.translate(0, -0.75, 0);
+        body.matrix.scale(0.4, 0.4, 0.4);
+        body.matrix.translate(x-16, 0, y-16);
+        body.renderfast();
       }
     }
   }
