@@ -434,10 +434,29 @@ function keydown(ev) {
   console.log(ev.keyCode);
 }
 
-// var g_eye=[0,0,3];
-// var g_at=[0,0,-100];
-// var g_up=[0,1,0];
+var g_map = [
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 1, 1, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 0, 0, 1, 0, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+];
 
+function drawMap(){
+  for (x=0; x<8; x++){
+    for (y=0;y<8;y++){
+      if (g_map[x][y]==1){
+        var body = new Cube();
+        body.color = [1.0, 1.0, 1.0, 1.0];
+        body.matrix.translate(x-4, -0.75, y-4);
+        body.render();
+      }
+    }
+  }
+}
 
 
 function renderAllShapes(){
@@ -531,6 +550,8 @@ function renderAllShapes(){
   hat.matrix.translate(-0.55, -0.5, 1.0);
   hat.matrix.scale(0.4, 0.4, 0.4);
   hat.render();
+
+  drawMap();
 
   //Check the time at the end of the function, and show on web page
   var duration = performance.now() - startTime;

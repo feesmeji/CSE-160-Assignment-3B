@@ -6,7 +6,7 @@ class Cube{
         // this.size = 5.0;
         // this.segments = 3;
         this.matrix = new Matrix4();
-        this.textureNum=0;
+        this.textureNum=-2;
     }
     render() {
         // var xy = this.position;
