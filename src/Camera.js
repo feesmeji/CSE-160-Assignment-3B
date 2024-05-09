@@ -7,7 +7,7 @@ class Camera{
         this.eye = new Vector3([0,0,0]);
         this.at = new Vector3([0,0,-1]);
         this.up = new Vector3([0,1,0]);
-        this.speed = 2;
+        this.speed = 0.5;
         this.projectionMatrix = new Matrix4().setPerspective(this.fov, (canvas.width/canvas.height), 0.1, 1000 );
         this.update();
       }
@@ -62,8 +62,8 @@ class Camera{
 
       moveRight(){
         let R = new Vector3();
-        R.set(this.eye);
-        R.sub(this.at);
+        R.set(this.at);
+        R.sub(this.eye);
         let s = Vector3.cross(R, this.up)
         s.normalize();
         s.mul(this.speed);

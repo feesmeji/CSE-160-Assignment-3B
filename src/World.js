@@ -425,7 +425,6 @@ function keydown(ev) {
   }
   if (ev.keyCode == 81) { // panleft
     camera.panLeft();
-    console.log('key error')
   }
   if (ev.keyCode == 69) { // panRight
     camera.panRight();
