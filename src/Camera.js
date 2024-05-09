@@ -40,7 +40,7 @@ class Camera{
       }
 
       moveLeft(){
-        let L = new Vector3();
+        let L = new Vector3(); //L is still considered to be a forward vector 
         L.set(this.at);
         L.sub(this.eye);
         let s = Vector3.cross(this.up, L)
@@ -65,6 +65,21 @@ class Camera{
         let PL = new Vector3();
         PL.set(this.at);
         PL.sub(this.eye);
+        let rot_mat = new Matrix4();
+        rot_mat.setRotate(23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        f_prime = rot_mat.multiplyVector3(PL)
+        // Code here "update the "at" vector to be at = eye + "panRight"
+        this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
+      }
 
+      panRight(){
+        let PR = new Vector3();
+        PR.set(this.at);
+        PR.sub(this.eye);
+        let rot_mat = new Matrix4();
+        rot_mat.setRotate(23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        f_prime = rot_mat.multiplyVector3(PR);
+        // Code here "update the "at" vector to be at = eye + "panRight"
+        this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
       }
 }
