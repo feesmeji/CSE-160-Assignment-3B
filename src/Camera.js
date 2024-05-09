@@ -1,18 +1,25 @@
+// Rohan the tutor helped me debug many things in this code.
+// Mostly referenced to assignment instructions, but when I would get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js.
 class Camera{
-    constuctor(){
+    constructor(){
         this.type = 'Camera';
         this.fov = 60.0;
         this.eye = new Vector3([0,0,0]);
         this.at = new Vector3([0,0,-1]);
         this.up = new Vector3([0,1,0]);
-        this.speed = 1;
-        this.viewMatrix = new Matrix4().setLookAt(
+        this.speed = 2;
+        this.projectionMatrix = new Matrix4().setPerspective(this.fov, (canvas.width/canvas.height), 0.1, 1000 );
+        this.update();
+      }
+
+
+      update(){
+        this.viewMat = new Matrix4().setLookAt(
           //ChatGPT helped me write the following three lines of code. It helped me understand that since we have vector 3 for the attributes, we must initialize each eye,at,up with three different coordinates x,y,z
           this.eye.elements[0], this.eye.elements[1], this.eye.elements[2], //x,y,z components
           this.at.elements[0], this.at.elements[1], this.at.elements[2], 
           this.up.elements[0], this.up.elements[1], this.up.elements[2],
         );
-        this.projectionMatrix = new Matrix4().setPerspective(fov, (canvas.width/canvas.height), 0.1, 1000 );
       }
 
       MoveForward(){
@@ -27,6 +34,7 @@ class Camera{
         //ChatGpt debugged code:
         this.eye.add(f);
         this.at.add(f);
+        this.update();
       }
 
       moveBackwards(){
@@ -37,6 +45,7 @@ class Camera{
         b.mul(this.speed);
         this.eye.add(b);
         this.at.add(b);
+        this.update();
       }
 
       moveLeft(){
@@ -48,6 +57,7 @@ class Camera{
         s.mul(this.speed);
         this.eye.add(s);
         this.at.add(s);
+        this.update();
       }
 
       moveRight(){
@@ -59,6 +69,7 @@ class Camera{
         s.mul(this.speed);
         this.eye.add(s);
         this.at.add(s);
+        this.update();
       }
 
       panLeft(){
@@ -67,9 +78,10 @@ class Camera{
         PL.sub(this.eye);
         let rot_mat = new Matrix4();
         rot_mat.setRotate(23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
-        f_prime = rot_mat.multiplyVector3(PL)
+        let f_prime = rot_mat.multiplyVector3(PL)
         // Code here "update the "at" vector to be at = eye + "panRight"
         this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
+        this.update();
       }
 
       panRight(){
@@ -77,9 +89,10 @@ class Camera{
         PR.set(this.at);
         PR.sub(this.eye);
         let rot_mat = new Matrix4();
-        rot_mat.setRotate(23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
-        f_prime = rot_mat.multiplyVector3(PR);
+        rot_mat.setRotate(-23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        let f_prime = rot_mat.multiplyVector3(PR);
         // Code here "update the "at" vector to be at = eye + "panRight"
         this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
+        this.update();
       }
 }

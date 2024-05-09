@@ -177,6 +177,10 @@ let g_wattleAnimation = false;
 let g_wattleAnimationrock = 0;
 //let g_selectedSegment = 3;
 
+//Initialize global camera variable
+let camera;
+
+
 function addActionForHTMLUI(){
   //Button Events
   document.getElementById('animationYellowOffButton').onclick = function() {g_yellowAnimation=false;};
@@ -319,6 +323,8 @@ function main() {
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); //clears the color and the depths (Rohan the course tutor helped me with this line of code)
 
+  camera = new Camera();
+
   //renderAllShapes();
   requestAnimationFrame(tick);
 
@@ -326,6 +332,7 @@ function main() {
   document.onkeydown = keydown;
 
   initTextures();
+
 }
 
 //var g_shapesList = [];
@@ -404,20 +411,33 @@ function updateAnimationAngles(){ //put all of the different angles that we are 
 }
 
 function keydown(ev) {
-  if(ev.keyCode == 39) { // The right arrow key was pressed
-    g_eye[0] += 0.2;
-  } else 
-  if (ev.keyCode == 37) { // The left arrow key was pressed
-    g_eye[0] -= 0.2;
+  if(ev.keyCode == 87) { // forward
+    camera.MoveForward();
+  }
+  if (ev.keyCode == 83) { // backward
+    camera.moveBackwards();
+  }
+  if (ev.keyCode == 65) { // move left
+    camera.moveLeft();
+  }
+  if (ev.keyCode == 68) { // move right
+    camera.moveRight();
+  }
+  if (ev.keyCode == 81) { // panleft
+    camera.panLeft();
+    console.log('key error')
+  }
+  if (ev.keyCode == 69) { // panRight
+    camera.panRight();
   }
 
   renderAllShapes();
   console.log(ev.keyCode);
 }
 
-var g_eye=[0,0,3];
-var g_at=[0,0,-100];
-var g_up=[0,1,0];
+// var g_eye=[0,0,3];
+// var g_at=[0,0,-100];
+// var g_up=[0,1,0];
 
 
 
@@ -431,9 +451,7 @@ function renderAllShapes(){
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
 
   // Pass the view matrix
-  var viewMat=new Matrix4();
-  viewMat.setLookAt(g_eye[0], g_eye[1], g_eye[2], g_at[0], g_at[1], g_at[2], g_up[0], g_up[1], g_up[2]);  //(eye, at, up)
-  gl.uniformMatrix4fv(u_ViewMatrix, false, viewMat.elements);
+  gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
   var globalRotMat=new Matrix4().rotate(g_globalAngle,0,1,0);
