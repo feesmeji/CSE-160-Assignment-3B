@@ -1,5 +1,3 @@
-const { Vector3 } = require("three");
-
 class Camera{
     constuctor(){
         this.type = 'Camera';
@@ -7,6 +5,7 @@ class Camera{
         this.eye = new Vector3([0,0,0]);
         this.at = new Vector3([0,0,-1]);
         this.up = new Vector3([0,1,0]);
+        this.speed = 1;
         this.viewMatrix = new Matrix4().setLookAt(
           //ChatGPT helped me write the following three lines of code. It helped me understand that since we have vector 3 for the attributes, we must initialize each eye,at,up with three different coordinates x,y,z
           this.eye.elements[0], this.eye.elements[1], this.eye.elements[2], //x,y,z components
@@ -21,7 +20,7 @@ class Camera{
         f.set(this.at);
         f.sub(this.eye);
         f.normalize();
-        f.mul(speed);
+        f.mul(this.speed);
         // orig code:
         // this.eye += f;
         // this.at += f;
@@ -35,12 +34,37 @@ class Camera{
         b.set(this.eye);
         b.sub(this.at);
         b.normalize();
-        b.mul(speed);
+        b.mul(this.speed);
         this.eye.add(b);
         this.at.add(b);
       }
 
       moveLeft(){
-        
+        let L = new Vector3();
+        L.set(this.at);
+        L.sub(this.eye);
+        let s = Vector3.cross(this.up, L)
+        s.normalize();
+        s.mul(this.speed);
+        this.eye.add(s);
+        this.at.add(s);
+      }
+
+      moveRight(){
+        let R = new Vector3();
+        R.set(this.eye);
+        R.sub(this.at);
+        let s = Vector3.cross(R, this.up)
+        s.normalize();
+        s.mul(this.speed);
+        this.eye.add(s);
+        this.at.add(s);
+      }
+
+      panLeft(){
+        let PL = new Vector3();
+        PL.set(this.at);
+        PL.sub(this.eye);
+
       }
 }
