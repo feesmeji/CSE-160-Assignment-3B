@@ -72,27 +72,33 @@ class Camera{
         this.update();
       }
 
+      // got help from Rohan and Jacob the tutors for debugging this function
       panLeft(){
         let PL = new Vector3();
         PL.set(this.at);
         PL.sub(this.eye);
         let rot_mat = new Matrix4();
-        rot_mat.setRotate(23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        rot_mat.setRotate(5, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
         let f_prime = rot_mat.multiplyVector3(PL)
         // Code here "update the "at" vector to be at = eye + "panRight"
-        this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
+        //this.at = f_prime = rot_mat.add(this.eye);
+        this.at.set(f_prime);
+        this.at.add(this.eye);
         this.update();
       }
 
+      // got help from Rohan and Jacob the tutors for debugging this function
       panRight(){
         let PR = new Vector3();
         PR.set(this.at);
         PR.sub(this.eye);
         let rot_mat = new Matrix4();
-        rot_mat.setRotate(-23, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
+        rot_mat.setRotate(-5, this.up.elements[0], this.up.elements[1], this.up.elements[2]);
         let f_prime = rot_mat.multiplyVector3(PR);
         // Code here "update the "at" vector to be at = eye + "panRight"
-        this.at = this.eye.add(f_prime);//Rohan the tutor helped me with this line of code.
+        //this.at = f_prime = rot_mat.add(this.eye);
+        this.at.set(f_prime);
+        this.at.add(this.eye);
         this.update();
       }
 }
