@@ -1,11 +1,12 @@
 // Rohan the tutor helped me debug many things in this code.
 // Mostly referenced to assignment instructions, but when I would get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js.
+//TA Jihao helped me understand the eye and at to choose a good starting point for my camera.
 class Camera{
     constructor(){
         this.type = 'Camera';
         this.fov = 60.0;
-        this.eye = new Vector3([0,0,0]);
-        this.at = new Vector3([0,0,-1]);
+        this.eye = new Vector3([0,0, 17.5]);  //changes position
+        this.at = new Vector3([0,0,-1]);   //changes where your eye is looking at
         this.up = new Vector3([0,1,0]);
         this.speed = 0.5;
         this.projectionMatrix = new Matrix4().setPerspective(this.fov, (canvas.width/canvas.height), 0.1, 1000 );

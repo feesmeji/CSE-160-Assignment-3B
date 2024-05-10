@@ -436,6 +436,7 @@ function keydown(ev) {
 
 
 //Each 1 represents the height of the wall. Can use a different number for taller height
+// I asked ChatGPT to give me a 32x32 array (it would take a lot of time for me to make), but I individually added the numbers to make my original maze.
 var g_map = [
 //back                                             //
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -447,15 +448,15 @@ var g_map = [
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],                 //   <---------------------------------
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  //front view
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],  //front view
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+      [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],   //opening of maze
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -470,10 +471,10 @@ var g_map = [
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-      // [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1],
-      // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
+
+//Rohan the tutor helped me figure out how to stack cubes for wall height
 function drawMap(){
   for (x=0; x<32; x++){
     for (y=0;y<32;y++){
@@ -528,61 +529,61 @@ function renderAllShapes(){
   var sky = new Cube();
   sky.color = [1, 0, 0, 1];
   sky.textureNum= 0;
-  sky.matrix.scale(50,50,50);
+  sky.matrix.scale(100,100,100);
   sky.matrix.translate(-0.5, -0.5, -0.5);
   sky.render();
   
-  //Draw a cube (red one)
-  var body = new Cube();
-  body.color = [1.0, 0.0, 0.0, 1.0];
-  body.textureNum = -1;
-  body.matrix.translate(-0.25, -0.75, 0.0);
-  body.matrix.rotate(-5,1,0,0);
-  body.matrix.scale(0.5, 0.3, 0.5);         //this one happens first! Right to left matrix multiplication
-  body.render();
+  // //Draw a cube (red one)
+  // var body = new Cube();
+  // body.color = [1.0, 0.0, 0.0, 1.0];
+  // body.textureNum = -1;
+  // body.matrix.translate(-0.25, -0.75, 0.0);
+  // body.matrix.rotate(-5,1,0,0);
+  // body.matrix.scale(0.5, 0.3, 0.5);         //this one happens first! Right to left matrix multiplication
+  // body.render();
 
 
-  //Draw a cube (red one)
-  var body2 = new Cube();
-  body2.color = [1.0, 0.0, 0.0, 1.0];
-  body2.textureNum = -1;
-  body2.matrix.translate(0.60, -0.75, 0.0);
-  body2.matrix.rotate(-5,1,0,0);
-  body2.matrix.scale(0.5, 0.3, 0.5);         //this one happens first! Right to left matrix multiplication
-  body2.render();
+  // //Draw a cube (red one)
+  // var body2 = new Cube();
+  // body2.color = [1.0, 0.0, 0.0, 1.0];
+  // body2.textureNum = -1;
+  // body2.matrix.translate(0.60, -0.75, 0.0);
+  // body2.matrix.rotate(-5,1,0,0);
+  // body2.matrix.scale(0.5, 0.3, 0.5);         //this one happens first! Right to left matrix multiplication
+  // body2.render();
 
 
-  // Draw a yellow left arm
-  var leftArm = new Cube();
-  leftArm.color = [1,1,0,1];
-  leftArm.matrix.setTranslate(0,-0.5,0.0);
-  leftArm.matrix.rotate(-5, 1, 0, 0);
+  // // Draw a yellow left arm
+  // var leftArm = new Cube();
+  // leftArm.color = [1,1,0,1];
+  // leftArm.matrix.setTranslate(0,-0.5,0.0);
+  // leftArm.matrix.rotate(-5, 1, 0, 0);
+  // // leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);  //2.6: rotate the yellow joint
   // leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);  //2.6: rotate the yellow joint
-  leftArm.matrix.rotate(-g_yellowAngle, 0, 0, 1);  //2.6: rotate the yellow joint
-  var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
-  leftArm.matrix.scale(0.25, 0.7, 0.5);
-  leftArm.matrix.translate(-0.5, 0, 0);
-  leftArm.render();
+  // var yellowCoordinatesMat = new Matrix4(leftArm.matrix);
+  // leftArm.matrix.scale(0.25, 0.7, 0.5);
+  // leftArm.matrix.translate(-0.5, 0, 0);
+  // leftArm.render();
 
-  //Test box (pink box)
-  var box = new Cube();
-  box.color = [1,0,1,1];
-  box.textureNum = 1;
-  box.matrix = yellowCoordinatesMat;
-  box.matrix.translate(0,0.65,0.0,0);
-  box.matrix.rotate(g_magentaAngle, 0, 0, 1);
-  box.matrix.scale(0.3, 0.3, 0.3);
-  box.matrix.translate(-0.5,0,-0.001);
-  box.render();
+  // //Test box (pink box)
+  // var box = new Cube();
+  // box.color = [1,0,1,1];
+  // box.textureNum = 1;
+  // box.matrix = yellowCoordinatesMat;
+  // box.matrix.translate(0,0.65,0.0,0);
+  // box.matrix.rotate(g_magentaAngle, 0, 0, 1);
+  // box.matrix.scale(0.3, 0.3, 0.3);
+  // box.matrix.translate(-0.5,0,-0.001);
+  // box.render();
 
 
-  // //Party hat!!
-  var hat = new Pyramid();
-  hat.color = [0.0, 1.0, 0.0, 1.0];
-  hat.textureNum = 1;
-  hat.matrix.translate(-0.55, -0.5, 1.0);
-  hat.matrix.scale(0.4, 0.4, 0.4);
-  hat.render();
+  // // //Party hat!!
+  // var hat = new Pyramid();
+  // hat.color = [0.0, 1.0, 0.0, 1.0];
+  // hat.textureNum = 1;
+  // hat.matrix.translate(-0.55, -0.5, 1.0);
+  // hat.matrix.scale(0.4, 0.4, 0.4);
+  // hat.render();
 
 
   //Draw Chicken Body
