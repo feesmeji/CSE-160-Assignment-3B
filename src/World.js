@@ -450,9 +450,9 @@ var g_map = [
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  //front view
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],  //front view
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -477,12 +477,13 @@ var g_map = [
 function drawMap(){
   for (x=0; x<32; x++){
     for (y=0;y<32;y++){
-      if (g_map[x][y] == 1){
-        var body = new Cube();
-        body.color = [1.0, 1.0, 1.0, 1.0];
-        body.matrix.translate(x-16, -0.750000001, y-16);
-        body.textureNum = 1;
-        body.renderfast();
+      let numCubes = g_map[x][y];
+      for(let height = 0; height<numCubes; height++){
+          var body = new Cube();
+          body.color = [1.0, 1.0, 1.0, 1.0];
+          body.matrix.translate(x-16, height-0.750000001, y-16);
+          body.textureNum = 1;
+          body.renderfast();
       }
     }
   }
@@ -584,117 +585,127 @@ function renderAllShapes(){
   hat.render();
 
 
-// // Draw Chicken Body
-// var chick_body = new Cube();
-// chick_body.color = [1.0, 1.0, 1.0, 1.0];
-// chick_body.matrix.translate(0.5, 0.5, 0.5); // Translate to the new origin
-// chick_body.matrix.scale(0.6, 0.6, 0.6);
-// chick_body.render();
+  //Draw Chicken Body
+  var body = new CenteredCube();
+  body.color = [1.0, 1.0, 1.0, 1.0];
+  body.matrix.scale(0.6,0.6,0.6);
+  body.render();
 
-// // Left Wing
-// var left_wing = new Cube();
-// left_wing.color = [1.0, 1.0, 1.0, 1.0];
-// left_wing.matrix.translate(0.5, 0.6, 0.15); // Translate based on the new origin
-// left_wing.matrix.scale(0.5, 0.4, 0.1);
-// left_wing.render();
+  // Left Wing
+  var left_wing = new CenteredCube();
+  left_wing.color = [1.0, 1.0, 1.0, 1.0];
+  left_wing.matrix.translate(0.0, 0.10, -0.35)
+  left_wing.matrix.scale(0.5, 0.4, -0.10)
+  left_wing.render();
 
-// // Right Wing
-// var right_wing = new Cube();
-// right_wing.color = [1.0, 1.0, 1.0, 1.0];
-// right_wing.matrix.translate(0.5, 0.6, 0.85); // Translate based on the new origin
-// right_wing.matrix.scale(0.5, 0.4, 0.1);
-// right_wing.render();
+  //Right Wing
+  var right_wing = new CenteredCube();
+  right_wing.color = [1.0, 1.0, 1.0, 1.0];
+  right_wing.matrix.translate(0.0, 0.10, 0.35);
+  right_wing.matrix.scale(0.5, 0.4, 0.10); 
+  right_wing.render();
+  
+  //Head
+  var head = new CenteredCube();
+  head.color = [1.0,1.0,1.0,1.0]
+  head.matrix.translate(-0.35, 0.3, 0.0);
+  head.matrix.scale(0.25, 0.5, 0.5); 
+  head.render();
 
-// // Head
-// var head = new Cube();
-// head.color = [1.0, 1.0, 1.0, 1.0];
-// head.matrix.translate(0.15, 0.8, 0.5);
-// head.matrix.scale(0.25, 0.5, 0.5);
-// head.render();
+  //beak
+  var beak = new CenteredCube();
+  beak.color = [1, 1, 0.0, 1.0];
+  beak.matrix.translate(-0.57, 0.3, 0);
+  beak.matrix.scale(0.20, 0.20, 0.5); 
+  beak.render();
 
-// // Beak
-// var beak = new Cube();
-// beak.color = [1, 1, 0.0, 1.0];
-// beak.matrix.translate(0.07, 0.8, 0.5);
-// beak.matrix.scale(0.20, 0.20, 0.5);
-// beak.render();
+  //Wattle (red part)
+  var wattle = new CenteredCube();
+  wattle.color = [1.0, 0.0, 0.0, 1.0];
+  wattle.matrix.translate(-0.52, 0.20, -0.001)
+  wattle.matrix.rotate(g_wattleAnimationrock, 1, 0, 0);
+  wattle.matrix.scale(0.10, 0.28, 0.2); 
+  wattle.render();
 
-// // Wattle (red part)
-// var wattle = new Cube();
-// wattle.color = [1.0, 0.0, 0.0, 1.0];
-// wattle.matrix.translate(0.02, 0.7, 0.499);
-// wattle.matrix.rotate(g_wattleAnimationrock, 1, 0, 0);
-// wattle.matrix.scale(0.10, 0.28, 0.2);
-// wattle.render();
 
-// // Left Eye
-// var left_eye = new Cube();
-// left_eye.color = [0.0, 0.0, 0.0, 1.0];
-// left_eye.matrix.translate(0.01999, 0.95, 0.65);
-// left_eye.matrix.scale(0.1, 0.1, 0.10);
-// left_eye.render();
+  //left eye
+  var left_eye = new CenteredCube();
+  left_eye.color = [0.0, 0.0, 0.0, 1.0];
+  left_eye.matrix.translate(-0.52001, 0.45, 0.20);
+  left_eye.matrix.scale(0.1, 0.1, 0.10);
+  left_eye.render();
+  
+  //Right Eye
+  var right_eye = new CenteredCube();
+  right_eye.color = [0.0, 0.0, 0.0, 1.0];
+  right_eye.matrix.translate(-0.52001, 0.45, -0.20);
+  right_eye.matrix.scale(0.1, 0.1, 0.10);
+  right_eye.render();
 
-// // Right Eye
-// var right_eye = new Cube();
-// right_eye.color = [0.0, 0.0, 0.0, 1.0];
-// right_eye.matrix.translate(0.01999, 0.95, 0.35);
-// right_eye.matrix.scale(0.1, 0.1, 0.10);
-// right_eye.render();
+  //upper left leg
+  var upper_leg1 = new CenteredCube();
+  upper_leg1.color = [1.0, 1.0, 1.0, 1.0];
+  upper_leg1.matrix.translate(0, -0.25, -0.15)
+  upper_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);  // Rotate around the z-axis
+  upper_leg1.matrix.scale(0.31,0.15,0.13);
+  upper_leg1.render();
 
-// // Upper Left Leg
-// var upper_leg1 = new Cube();
-// upper_leg1.color = [1.0, 1.0, 1.0, 1.0];
-// upper_leg1.matrix.translate(0.5, 0.25, 0.35);
-// upper_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);
-// upper_leg1.matrix.scale(0.31, 0.15, 0.13);
-// upper_leg1.render();
+  //upper right leg
+  var upper_leg2 = new CenteredCube();
+  upper_leg2.color = [1.0, 1.0, 1.0, 1.0];
+  upper_leg2.matrix.translate(0, -0.25, 0.15)
+  upper_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);  // Rotate around the z-axis
+  upper_leg2.matrix.scale(0.31,0.15,0.13);
+  upper_leg2.render();
 
-// // Upper Right Leg
-// var upper_leg2 = new Cube();
-// upper_leg2.color = [1.0, 1.0, 1.0, 1.0];
-// upper_leg2.matrix.translate(0.5, 0.25, 0.65);
-// upper_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);
-// upper_leg2.matrix.scale(0.31, 0.15, 0.13);
-// upper_leg2.render();
+  // mid left leg
+  var mid_leg1 = new CenteredCube();
+  mid_leg1.color = [1, 1, 0.0, 1.0];
+  mid_leg1.matrix.translate(0, -0.45, -0.15); // Translate to the base of the leg
+  mid_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);  // Rotate around the z-axis
+  mid_leg1.matrix.rotate(g_midLegAngle, 0, 0, 1);  // Rotate the mid leg //Chat gpt helped me debug my slider control for a second level joint (I originally had but got rid of and couldn't get it to work anymore when I tried implementing again). So it suggested me to add this snippet of code
+  var left_foot_coordMat = new Matrix4(mid_leg1.matrix); //Debugged chat gpt suggested code
+  mid_leg1.matrix.scale(0.08,0.5,0.08);
+  mid_leg1.render();
 
-// // Mid Left Leg
-// var mid_leg1 = new Cube();
-// mid_leg1.color = [1, 1, 0.0, 1.0];
-// mid_leg1.matrix.translate(0.5, 0.05, 0.35);
-// mid_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);
-// mid_leg1.matrix.rotate(g_midLegAngle, 0, 0, 1);
-// mid_leg1.matrix.scale(0.08, 0.5, 0.08);
-// mid_leg1.render();
 
-// // Mid Right Leg
-// var mid_leg2 = new Cube();
-// mid_leg2.color = [1, 1, 0.0, 1.0];
-// mid_leg2.matrix.translate(0.5, 0.05, 0.65);
-// mid_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);
-// mid_leg2.matrix.scale(0.08, 0.5, 0.08);
-// mid_leg2.render();
+  // //mid right leg
+  var mid_leg2 = new CenteredCube();
+  mid_leg2.color = [1, 1, 0.0, 1.0];
+  mid_leg2.matrix.translate(0, -0.45, 0.15)
+  //mid_leg2.matrix.rotate(-g_yellowAngleRight, 0, 0, 1);  // Rotate around the z-axis
+  mid_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);  // Rotate around the z-axis
+  var right_foot_coordMat = new Matrix4(mid_leg2.matrix);
+  mid_leg2.matrix.scale(0.08,0.5,0.08);
+  mid_leg2.render();
 
-// // Left Foot
-// var left_foot = new Cube();
-// left_foot.color = [1, 1, 0.0, 1.0];
-// left_foot.matrix.translate(0.5, 0.05, 0.6);
-// left_foot.matrix.rotate(g_left_footangle, 0, 1, 0);
-// left_foot.matrix.scale(0.2, 0.10, 0.2);
-// left_foot.render();
+  // left foot
+  var left_foot = new CenteredCube();
+  left_foot.color = [1, 1, 0.0, 1.0];
+  left_foot.matrix = left_foot_coordMat;   //Chat gpt helped me debug my slider control for a second level joint (I originally had but got rid of and couldn't get it to work anymore when I tried implementing again). So it suggested me to add this snippet of code
+  left_foot.matrix.translate(0.0, -0.45, 0)
+  left_foot.matrix.rotate(g_left_footangle, 0, 1, 0);   //Chat gpt helped me debug my slider control for a second level joint (I originally had but got rid of and couldn't get it to work anymore when I tried implementing again). So it suggested me to add this snippet of code
+  left_foot.matrix.scale(0.2,0.10,0.2);
+  left_foot.matrix.translate(-0.3, 1.5, 0)
+  left_foot.render();
 
-// // Right Foot
-// var right_foot = new Cube();
-// right_foot.color = [1, 1, 0.0, 1.0];
-// right_foot.matrix.translate(0.5, 0.05, 0.4);
-// right_foot.matrix.scale(0.2, 0.10, 0.2);
-// right_foot.render();
 
-// // Party Hat
-// var chick_hat = new Pyramid();
-// chick_hat.color = [0.0, 1.0, 0.0, 1.0];
-// chick_hat.matrix.translate(0.15, 1.35, 0.5);
-// chick_hat.matrix.scale(0.2, 0.2, 0.2);
-// chick_hat.render();
+  //right foot
+  var right_foot = new CenteredCube();
+  right_foot.color = [1, 1, 0.0, 1.0];
+  right_foot.matrix = right_foot_coordMat;
+  right_foot.matrix.translate(0.0, -0.45, 0.0)
+  right_foot.matrix.scale(0.2,0.10,0.2);
+  right_foot.matrix.translate(-0.3, 1.5, 0)
+  // right_foot.matrix.scale(0.2,0.10,0.2);
+  right_foot.render();
+
+  // //Party hat!!
+   var hat = new Pyramid();
+   hat.color = [0.0, 1.0, 0.0, 1.0];
+   hat.matrix.translate(-0.35, 0.65, 0.0);
+   hat.matrix.scale(0.2, 0.2, 0.2);
+   hat.render();
 
   drawMap();
 
