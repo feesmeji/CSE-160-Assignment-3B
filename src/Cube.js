@@ -57,31 +57,31 @@ class Cube{
 
 // Section 2: triangles
     //Front of cube
-    drawTriangle3D( [0,0,0,  1,1,0,  1,0,0 ]);
-    drawTriangle3D( [0,0,0,  0,1,0,  1,1,0 ]);
+    // drawTriangle3D( [0,0,0,  1,1,0,  1,0,0 ]);
+    // drawTriangle3D( [0,0,0,  0,1,0,  1,1,0 ]);
 
 
-    //Back of cube (when drawing things, webgl renders objects closer to the camera when the z coordinate is less than zero. Further away from camera if z axis is greater than zero)
-    drawTriangle3D( [0,0,1,  1,1,1,  1,0,1 ]);
-    drawTriangle3D( [0,0,1,  0,1,1,  1,1,1 ]);
-    // Fake lighting (Pass the color of a point to u_FragColor uniform variable)
-    gl.uniform4f(u_FragColor, rgba[0]*0.9, rgba[1]*0.9, rgba[2]*0.9, rgba[3]);
+    // //Back of cube (when drawing things, webgl renders objects closer to the camera when the z coordinate is less than zero. Further away from camera if z axis is greater than zero)
+    // drawTriangle3D( [0,0,1,  1,1,1,  1,0,1 ]);
+    // drawTriangle3D( [0,0,1,  0,1,1,  1,1,1 ]);
+    // // Fake lighting (Pass the color of a point to u_FragColor uniform variable)
+    // gl.uniform4f(u_FragColor, rgba[0]*0.9, rgba[1]*0.9, rgba[2]*0.9, rgba[3]);
 
-    //Top of cube
-    drawTriangle3D( [0,1,0,   0,1,1,  1,1,1]);
-    drawTriangle3D( [0,1,0,   1,1,1,  1,1,0]);
+    // //Top of cube
+    // drawTriangle3D( [0,1,0,   0,1,1,  1,1,1]);
+    // drawTriangle3D( [0,1,0,   1,1,1,  1,1,0]);
     
-    //Bottom of cube
-    drawTriangle3D( [0,0,0,   0,0,1,  1,0,1]);
-    drawTriangle3D( [0,0,0,   1,0,1,  1,0,0]);
+    // //Bottom of cube
+    // drawTriangle3D( [0,0,0,   0,0,1,  1,0,1]);
+    // drawTriangle3D( [0,0,0,   1,0,1,  1,0,0]);
 
-    //Right side of cube
-    drawTriangle3D([1,1,1,   1,0,1,    1, 0, 0])// right side of cube triangle 1
-    drawTriangle3D([1,1,1,   1,1,0,    1, 0, 0])//right side of cube triangle 2
+    // //Right side of cube
+    // drawTriangle3D([1,1,1,   1,0,1,    1, 0, 0])// right side of cube triangle 1
+    // drawTriangle3D([1,1,1,   1,1,0,    1, 0, 0])//right side of cube triangle 2
 
-    //Left side of triangle
-    drawTriangle3D([0,0,0,   0,1,0,   0,1,1]) //left side of cube triangle 1
-    drawTriangle3D([0,0,0,   0,0,1,   0,1,1]) //left side of cube triangle 2
+    // //Left side of triangle
+    // drawTriangle3D([0,0,0,   0,1,0,   0,1,1]) //left side of cube triangle 1
+    // drawTriangle3D([0,0,0,   0,0,1,   0,1,1]) //left side of cube triangle 2
     
     }
 
@@ -123,16 +123,16 @@ class Cube{
         allUVs = allUVs.concat([0,0,  1,1,  1,0]);
     
         // Right side of cube
-        allverts = allverts.concat([1,1,0,  1,1,1,  1,0,0]);
-        allUVs = allUVs.concat([0,0,  1,1,  1,0]);
         allverts = allverts.concat([1,0,0,  1,1,1,  1,0,1]);
         allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        allverts = allverts.concat([1,0,0,  1,1,0,  1,1,1]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
     
         // Left side of cube
-        allverts = allverts.concat([0,1,0,  0,1,1,  0,0,0]);
-        allUVs = allUVs.concat([0,0,  0,1,  1,0]);
         allverts = allverts.concat([0,0,0,  0,1,1,  0,0,1]);
         allUVs = allUVs.concat([0,0,  1,1,  1,0]);
+        allverts = allverts.concat([0,0,0,  0,1,0,  0,1,1]);
+        allUVs = allUVs.concat([0,0,  0,1,  1,1]);
     
         drawTriangle3DUV(allverts, allUVs);
     }

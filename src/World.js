@@ -434,33 +434,62 @@ function keydown(ev) {
   console.log(ev.keyCode);
 }
 
+
+//Each 1 represents the height of the wall. Can use a different number for taller height
 var g_map = [
-  [1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 1, 1, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1],
-  [1, 0, 0, 0, 1, 0, 0, 1],
-  [1, 0, 0, 0, 0, 0, 0, 1],
+//back                                             //
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],  //front view
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      // [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1],
+      // [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
 function drawMap(){
   for (x=0; x<32; x++){
     for (y=0;y<32;y++){
-      if (x<1 || x==31|| y==0|| y==31 ){
+      if (g_map[x][y] == 1){
         var body = new Cube();
+        body.color = [1.0, 1.0, 1.0, 1.0];
+        body.matrix.translate(x-16, -0.750000001, y-16);
         body.textureNum = 1;
-//        body.color = [0.8, 1.0, 1.0, 1.0];
-        body.matrix.translate(0, -0.75, 0);
-        body.matrix.scale(0.4, 0.4, 0.4);
-        body.matrix.translate(x-16, 0, y-16);
         body.renderfast();
       }
     }
   }
 }
 
+console.log(g_map.length);
+console.log(g_map[0].length);
 
 function renderAllShapes(){
 
@@ -487,10 +516,10 @@ function renderAllShapes(){
 
 // Draw the floor
   var floor = new Cube();
-  floor.color = [1.0, 0.0, 0.0, 1.0];
+  floor.color = [0.55, 0.27, 0.07, 1.0]; //chatgpt helped me determine this dirt brown color
   floor.textureNum=-2;
   floor.matrix.translate(0, -0.75, 0.0);
-  floor.matrix.scale(10, 0, 10);
+  floor.matrix.scale(32.5, 0, 32.5);
   floor.matrix.translate(-0.5, 0, -0.5);
   floor.render();
 
@@ -553,6 +582,119 @@ function renderAllShapes(){
   hat.matrix.translate(-0.55, -0.5, 1.0);
   hat.matrix.scale(0.4, 0.4, 0.4);
   hat.render();
+
+
+// // Draw Chicken Body
+// var chick_body = new Cube();
+// chick_body.color = [1.0, 1.0, 1.0, 1.0];
+// chick_body.matrix.translate(0.5, 0.5, 0.5); // Translate to the new origin
+// chick_body.matrix.scale(0.6, 0.6, 0.6);
+// chick_body.render();
+
+// // Left Wing
+// var left_wing = new Cube();
+// left_wing.color = [1.0, 1.0, 1.0, 1.0];
+// left_wing.matrix.translate(0.5, 0.6, 0.15); // Translate based on the new origin
+// left_wing.matrix.scale(0.5, 0.4, 0.1);
+// left_wing.render();
+
+// // Right Wing
+// var right_wing = new Cube();
+// right_wing.color = [1.0, 1.0, 1.0, 1.0];
+// right_wing.matrix.translate(0.5, 0.6, 0.85); // Translate based on the new origin
+// right_wing.matrix.scale(0.5, 0.4, 0.1);
+// right_wing.render();
+
+// // Head
+// var head = new Cube();
+// head.color = [1.0, 1.0, 1.0, 1.0];
+// head.matrix.translate(0.15, 0.8, 0.5);
+// head.matrix.scale(0.25, 0.5, 0.5);
+// head.render();
+
+// // Beak
+// var beak = new Cube();
+// beak.color = [1, 1, 0.0, 1.0];
+// beak.matrix.translate(0.07, 0.8, 0.5);
+// beak.matrix.scale(0.20, 0.20, 0.5);
+// beak.render();
+
+// // Wattle (red part)
+// var wattle = new Cube();
+// wattle.color = [1.0, 0.0, 0.0, 1.0];
+// wattle.matrix.translate(0.02, 0.7, 0.499);
+// wattle.matrix.rotate(g_wattleAnimationrock, 1, 0, 0);
+// wattle.matrix.scale(0.10, 0.28, 0.2);
+// wattle.render();
+
+// // Left Eye
+// var left_eye = new Cube();
+// left_eye.color = [0.0, 0.0, 0.0, 1.0];
+// left_eye.matrix.translate(0.01999, 0.95, 0.65);
+// left_eye.matrix.scale(0.1, 0.1, 0.10);
+// left_eye.render();
+
+// // Right Eye
+// var right_eye = new Cube();
+// right_eye.color = [0.0, 0.0, 0.0, 1.0];
+// right_eye.matrix.translate(0.01999, 0.95, 0.35);
+// right_eye.matrix.scale(0.1, 0.1, 0.10);
+// right_eye.render();
+
+// // Upper Left Leg
+// var upper_leg1 = new Cube();
+// upper_leg1.color = [1.0, 1.0, 1.0, 1.0];
+// upper_leg1.matrix.translate(0.5, 0.25, 0.35);
+// upper_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);
+// upper_leg1.matrix.scale(0.31, 0.15, 0.13);
+// upper_leg1.render();
+
+// // Upper Right Leg
+// var upper_leg2 = new Cube();
+// upper_leg2.color = [1.0, 1.0, 1.0, 1.0];
+// upper_leg2.matrix.translate(0.5, 0.25, 0.65);
+// upper_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);
+// upper_leg2.matrix.scale(0.31, 0.15, 0.13);
+// upper_leg2.render();
+
+// // Mid Left Leg
+// var mid_leg1 = new Cube();
+// mid_leg1.color = [1, 1, 0.0, 1.0];
+// mid_leg1.matrix.translate(0.5, 0.05, 0.35);
+// mid_leg1.matrix.rotate(g_yellowAngle, 0, 0, 1);
+// mid_leg1.matrix.rotate(g_midLegAngle, 0, 0, 1);
+// mid_leg1.matrix.scale(0.08, 0.5, 0.08);
+// mid_leg1.render();
+
+// // Mid Right Leg
+// var mid_leg2 = new Cube();
+// mid_leg2.color = [1, 1, 0.0, 1.0];
+// mid_leg2.matrix.translate(0.5, 0.05, 0.65);
+// mid_leg2.matrix.rotate(g_yellowAngleRight, 0, 0, 1);
+// mid_leg2.matrix.scale(0.08, 0.5, 0.08);
+// mid_leg2.render();
+
+// // Left Foot
+// var left_foot = new Cube();
+// left_foot.color = [1, 1, 0.0, 1.0];
+// left_foot.matrix.translate(0.5, 0.05, 0.6);
+// left_foot.matrix.rotate(g_left_footangle, 0, 1, 0);
+// left_foot.matrix.scale(0.2, 0.10, 0.2);
+// left_foot.render();
+
+// // Right Foot
+// var right_foot = new Cube();
+// right_foot.color = [1, 1, 0.0, 1.0];
+// right_foot.matrix.translate(0.5, 0.05, 0.4);
+// right_foot.matrix.scale(0.2, 0.10, 0.2);
+// right_foot.render();
+
+// // Party Hat
+// var chick_hat = new Pyramid();
+// chick_hat.color = [0.0, 1.0, 0.0, 1.0];
+// chick_hat.matrix.translate(0.15, 1.35, 0.5);
+// chick_hat.matrix.scale(0.2, 0.2, 0.2);
+// chick_hat.render();
 
   drawMap();
 
