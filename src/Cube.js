@@ -86,10 +86,11 @@ class Cube{
     }
 
     //ChatGPT helped me debug this function (I was not including UVs which was messing up my map border, chatgpt helped me realize that I needed to add them and I learned how to do with chat gpt's help.)
+    //Rohan helped me debug this function's coordinates.
     renderfast() {
 
         gl.uniform1i(u_whichTexture, this.textureNum);
-        
+
         var rgba = this.color;
     
         //Pass color of a point to u_FragColor var
