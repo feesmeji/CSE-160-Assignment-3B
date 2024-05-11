@@ -23,6 +23,7 @@ var FSHADER_SOURCE = `
   uniform vec4 u_FragColor;
   uniform sampler2D u_Sampler0;
   uniform sampler2D u_Sampler1;
+  uniform sampler2D u_Sampler2;
   uniform int u_whichTexture;
   void main() {
     if (u_whichTexture == -2){
@@ -36,6 +37,9 @@ var FSHADER_SOURCE = `
     }
     else if (u_whichTexture == 1){      //grass texture
       gl_FragColor = texture2D(u_Sampler1, v_UV);
+    }
+    else if (u_whichTexture == 2){       //diamond texture
+      gl_FragColor = texture2D(u_Sampler2, v_UV);
     }
     else{                  //Error, put red
       gl_FragColor = vec4(1, 0.2, 0.2, 1);
@@ -55,6 +59,7 @@ let u_ViewMatrix;
 let u_GlobalRotateMatrix;
 let u_Sampler0;
 let u_Sampler1;
+let u_Sampler2;
 let u_whichTexture;
 
 function setupWebGL(){
@@ -135,6 +140,12 @@ function connectVariablesToGLSL(){
   u_Sampler1 = gl.getUniformLocation(gl.program, 'u_Sampler1');
   if (!u_Sampler1) {
     console.log('Failed to get the storage location of u_Sampler1');
+    return false;
+  }
+
+  u_Sampler2 = gl.getUniformLocation(gl.program, 'u_Sampler2');
+  if (!u_Sampler2) {
+    console.log('Failed to get the storage location of u_Sampler2');
     return false;
   }
 
@@ -248,6 +259,8 @@ canvas.addEventListener('mouseup', function(ev) {
 function initTextures() {
   var image = new Image();   // Create a texture object
   var image2 = new Image();
+  var image3 = new Image();
+
   if (!image) {
     console.log('Failed to create the image object');
     return false;
@@ -255,6 +268,11 @@ function initTextures() {
 
   if (!image2) {
     console.log('Failed to create the image2 object');
+    return false;
+  }
+
+  if (!image3) {
+    console.log('Failed to create the image3 object');
     return false;
   }
 
@@ -268,6 +286,11 @@ function initTextures() {
   
   image2.src = '../src/grass.jpg';
 
+
+  image3.onload = function(){ sendTextureToGLSL(image3,2); }; //this will setup function that will run when image is done laoding, runs after laoding is completed
+  
+  image3.src = '../src/diamond.jpg';
+
   return true;
 
 
@@ -276,10 +299,11 @@ function initTextures() {
 
 //ChatGPT helped me fix some lines of code in this function to accomodate and also helped me learn how to handle 2 textures in a program.
 function sendTextureToGLSL(image, textureUnit) {
+  console.log("Sending texture to GLSL with texture unit: " + textureUnit);
   var texture = gl.createTexture();
   if (!texture){
     console.log('Failed to create the texture object');
-    return false;
+    return null;
   }
 
   gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
@@ -289,10 +313,16 @@ function sendTextureToGLSL(image, textureUnit) {
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
 
 //ChatGPT helped me learn in these if-else statements how to handle using two textures (and additional ones if needed)
-  if (textureUnit == 0) {
+  if (textureUnit === 0) {
     gl.uniform1i(u_Sampler0, textureUnit);
-  } else if (textureUnit == 1) {
+  }
+  
+  else if (textureUnit === 1) {
     gl.uniform1i(u_Sampler1, textureUnit);
+  }
+
+  else if(textureUnit === 2){
+    gl.uniform1i(u_Sampler2, textureUnit);
   }
 
   return texture;
@@ -340,7 +370,6 @@ function main() {
 //  var g_points = [];  // The array for the position of a mouse press
 //  var g_colors = [1.0, 1.0, 1.0, 1.0];  // The array to store the color of a point
 //  var g_sizes = [];
-
 // Keep track of startime when program starts and the seconds
 var g_startTime=performance.now()/1000.0;
 var g_seconds=performance.now/1000.0-g_startTime;
@@ -554,6 +583,14 @@ function renderAllShapes(){
 
 
   //Diamond cube
+  var diamond = new Cube();
+  diamond.color = [1.0, 0.0, 0.0, 1.0];
+  diamond.textureNum = 0;
+  diamond.matrix.translate(-0.25, -0.75, 0.80);
+  diamond.matrix.rotate(0,1,0,0);
+  diamond.matrix.scale(0.5, 0.5, 0.5);         //this one happens first! Right to left matrix multiplication
+  diamond.render();  
+
 
   // // Draw a yellow left arm
   // var leftArm = new Cube();

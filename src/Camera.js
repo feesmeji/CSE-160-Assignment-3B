@@ -1,5 +1,5 @@
-// Rohan the tutor helped me debug many things in this code.
-// Mostly referenced to assignment instructions, but when I would get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js.
+// Rohan the tutor helped me debug many things in this code, along with Jacob the tutor.
+// Mostly referenced to assignment instructions, but when I would sometimes get get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js to gain inspiration for my code.
 //TA Jihao helped me understand the eye and at to choose a good starting point for my camera.
 class Camera{
     constructor(){
@@ -8,12 +8,12 @@ class Camera{
         this.eye = new Vector3([0,0, 17.5]);  //changes position
         this.at = new Vector3([0,0,-1]);   //changes where your eye is looking at
         this.up = new Vector3([0,1,0]);
-        this.speed = 0.5;
+        this.speed = 0.3;
         this.projectionMatrix = new Matrix4().setPerspective(this.fov, (canvas.width/canvas.height), 0.1, 1000 );
         this.update();
       }
 
-
+      //Rohan suggested that I make this function instead of having it in my constructor which I did here.
       update(){
         this.viewMat = new Matrix4().setLookAt(
           //ChatGPT helped me write the following three lines of code. It helped me understand that since we have vector 3 for the attributes, we must initialize each eye,at,up with three different coordinates x,y,z
