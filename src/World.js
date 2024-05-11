@@ -557,7 +557,6 @@ var g_map_corn = [
   ];
   
   
-  //Rohan the tutor helped me figure out how to stack cubes for wall height
   function drawMapCorn(){
     for (x=0; x<32; x++){
       for (y=0;y<32;y++){
