@@ -1,3 +1,4 @@
+//Rohan the tutor suggested I make this file to make it easier to make my blocky animal appear in my blocky world.
 class CenteredCube{
     constructor(){
         this.type='cube';
