@@ -238,8 +238,8 @@ function mouseMoveHandler(ev) {
   let Y = ev.clientY - mouse_y;
   
   // Update rotation angles based on mouse movement
-  g_globalAngle += X * 1; // Sensitivity of 1 to make it fast
-  g_globalAngleY += Y * 1;
+  g_globalAngle += X * 0.5; // Sensitivity of 1 to make it fast
+  g_globalAngleY += Y * 0.5;
   
   // Store intermediate mouse position
   mouse_x = ev.clientX;
@@ -588,6 +588,8 @@ function renderAllShapes(){
   gl.uniformMatrix4fv(u_ProjectionMatrix, false, projMat.elements);
 
   // Pass the view matrix
+  // var viewMat = new Matrix4();
+  // viewMat.setLookAt(0,0,3,   0,0,-100,   0,1,0);
   gl.uniformMatrix4fv(u_ViewMatrix, false, camera.viewMat.elements);
 
   //Pass the matrix to u_ModelMatrix attribute
