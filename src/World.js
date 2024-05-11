@@ -238,6 +238,7 @@ function mouseMoveHandler(ev) {
   let Y = ev.clientY - mouse_y;
   
   // Update rotation angles based on mouse movement
+  //Slower camera rotation.
   g_globalAngle += X * 0.5; // Sensitivity of 1 to make it fast
   g_globalAngleY += Y * 0.5;
   
