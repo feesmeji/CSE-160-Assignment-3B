@@ -355,6 +355,8 @@ function main() {
 
   camera = new Camera();
 
+//
+
   //renderAllShapes();
   requestAnimationFrame(tick);
 
