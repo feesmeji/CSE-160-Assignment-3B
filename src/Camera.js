@@ -1,5 +1,5 @@
 // Rohan the tutor helped me debug many things in this code, along with Jacob the tutor.
-// Mostly referenced to assignment instructions, but when I would sometimes get get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js to gain inspiration for my code.
+// Mostly referenced to assignment instructions, but when I would sometimes get get bugs I referred to https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js to gain inspiration for my code and to help me debug when I sometimes got stuck following the Camera instructions of Asgn3.
 //TA Jihao helped me understand the eye and at to choose a good starting point for my camera.
 class Camera{
     constructor(){
