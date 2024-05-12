@@ -23,7 +23,7 @@ class CenteredCube{
         gl.uniformMatrix4fv(u_ModelMatrix, false, this.matrix.elements);        
         
     
-//CHATGPT Helped me center the cube on the origin with the correct coordinates.
+//CHATGPT Helped me center the cube on the origin with the correct coordinates (This code is from asng2).
 //I later mapped out by hand each point on a visualizing tool to make sure it was positioned correctly centered on the origin.
 // I originally was printing cubes on the 1st quadrant which I didn't like.
 

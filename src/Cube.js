@@ -52,40 +52,10 @@ class Cube{
     //Left side of triangle
     drawTriangle3DUV([0,0,0,   0,1,1,   0,0,1], [0,0,  1,1,  1,0]); //left side of cube triangle 1
     drawTriangle3DUV([0,0,0,   0,1,0,   0,1,1], [0,0,  0,1,  1,1]); //left side of cube triangle 2
-
-// ----------------UV End
-
-// Section 2: triangles
-    //Front of cube
-    // drawTriangle3D( [0,0,0,  1,1,0,  1,0,0 ]);
-    // drawTriangle3D( [0,0,0,  0,1,0,  1,1,0 ]);
-
-
-    // //Back of cube (when drawing things, webgl renders objects closer to the camera when the z coordinate is less than zero. Further away from camera if z axis is greater than zero)
-    // drawTriangle3D( [0,0,1,  1,1,1,  1,0,1 ]);
-    // drawTriangle3D( [0,0,1,  0,1,1,  1,1,1 ]);
-    // // Fake lighting (Pass the color of a point to u_FragColor uniform variable)
-    // gl.uniform4f(u_FragColor, rgba[0]*0.9, rgba[1]*0.9, rgba[2]*0.9, rgba[3]);
-
-    // //Top of cube
-    // drawTriangle3D( [0,1,0,   0,1,1,  1,1,1]);
-    // drawTriangle3D( [0,1,0,   1,1,1,  1,1,0]);
-    
-    // //Bottom of cube
-    // drawTriangle3D( [0,0,0,   0,0,1,  1,0,1]);
-    // drawTriangle3D( [0,0,0,   1,0,1,  1,0,0]);
-
-    // //Right side of cube
-    // drawTriangle3D([1,1,1,   1,0,1,    1, 0, 0])// right side of cube triangle 1
-    // drawTriangle3D([1,1,1,   1,1,0,    1, 0, 0])//right side of cube triangle 2
-
-    // //Left side of triangle
-    // drawTriangle3D([0,0,0,   0,1,0,   0,1,1]) //left side of cube triangle 1
-    // drawTriangle3D([0,0,0,   0,0,1,   0,1,1]) //left side of cube triangle 2
     
     }
 
-    //ChatGPT helped me debug this function (I was not including UVs which was messing up my map border, chatgpt helped me realize that I needed to add them and I learned how to do with chat gpt's help.)
+    //ChatGPT helped me debug this function (I was not including UVs which was messing up my map border, chatgpt helped me realize that I needed to add them as wekk and I learned how to do with chat gpt's help.)
     //Rohan helped me debug this function's coordinates.
     renderfast() {
 
@@ -140,6 +110,4 @@ class Cube{
     
         drawTriangle3DUV(allverts, allUVs);
     }
-    
-
 }
