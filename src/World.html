@@ -7,17 +7,14 @@
 
   <body onload="main()">
 
-    <h1>Fernando Mejia</h1>
+    <h1>CSE 160 Assignment 3B: Creating a Virtual World</h1>
 
-    <p>UCSC Email: feesmeji@ucsc.edu</p>
-    
-    <p>Notes to grader at bottom of webpage.
-    </p>
+    <h2>Story: Your pet chicken ran into the maze looking for a treasure diamond block and a never before seen colorful block! Find your chicken. Hint: your chicken was munching corn while on the run, so it might have left a track of corn crumbs along the way.</h2>
+
+    <p>Author: Fernando Mejia</p>
 
 
-    <h2>Story: Your pet chicken ran into the maze looking for a treasure diamond block and a never before seen colorful block! Find your chicken. Hint: your chicken was munching corn while on the run, so she might have left a track of corn crumbs along the way.</h2>
-
-    <p>Game Controls: W(Move Forward), S(Move Backward), A(Move Left), D(Move Right), Q(Pan Left), E(Pan Right)</p>
+    <p><b>Game Controls:</b> W(Move Forward), S(Move Backward), A(Move Left), D(Move Right), Q(Pan Left), E(Pan Right)</p>
 
     <canvas id="webgl" width="400" height="400">
     Please use a browser that supports "canvas"
@@ -26,6 +23,8 @@
 
     <p id="numdot"> Performance will show here once you start drawing. </p>
 
+    <p><b>World Controls: </b></p>
+
     <p>
       Camera Angle(X):<input type="range" min="0" max="720" value="0" class="slider" id="angleSlide">
     <p>
@@ -33,10 +32,8 @@
         Camera Angle(Y):<input type="range" min="0" max="720" value="0" class="slider" id="angleSlideY">
       <p>
 
-    <br><br>
-
     <p>
-      Blocky Animal Controls:
+      <b>Blocky Chicken Controls: </b>
       </p>
 <!-- Yellow Slider controls the left-to-right movement of the leg (ChatGPT helped me modify this line of code) -->
     <p>Right_Leg Slider <input type="range" min="-34.0" max="34.0" step="0.1" value="0" class="slider" id="yellowSlideRight"></p>
@@ -50,16 +47,6 @@
     <button type="button" id="animationYellowOffButton">OFF</button>
 <br><br>
     Also: Do Shift-Click for a new animation!
-
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-<br><br>
-Notes to grader: Most code based off of Professor's walkthrough videos. ChatGPT sometimes helped me debug, get unstuck with my code, and learn new stuff for my code. I made comments in my code indicating where it was used. Also recieved help from various course tutors. I sometimes referred to: https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js in my Camera.js file to help me debug and correct my code(I mostly wrote it following the assignment instuctions).  
 
     <script src="../lib/webgl-utils.js"></script>
     <script src="../lib/webgl-debug.js"></script>

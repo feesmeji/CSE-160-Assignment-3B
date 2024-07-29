@@ -783,3 +783,5 @@ function sendTextToHTML(text, htmlID) {
   }
   htmlElm.innerHTML = text;
 }
+
+//Assignment notes to grader: Most code based off of Professor's walkthrough videos. ChatGPT sometimes helped me debug, get unstuck with my code, and learn new stuff for my code. I made comments in my code indicating where it was used. Also recieved help from various course tutors. I sometimes referred to: https://people.ucsc.edu/~jbrowne2/asgn3/src/Camera.js in my Camera.js file to help me debug and correct my code(I mostly wrote it following the assignment instuctions).  
